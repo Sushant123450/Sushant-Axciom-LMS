@@ -64,6 +64,8 @@ exports.login = async (req, res) => {
 };
 
 exports.addUser = async (req, res) => {
+	console.log("Add User Called");
+
 	try {
 		let { role, name, password } = req.body;
 		let uid;
@@ -101,9 +103,11 @@ exports.addUser = async (req, res) => {
 			password: hashedPassword,
 			status: "active",
 		});
+		user.password = undefined;
 		return res.status(200).json({
 			success: "success",
 			message: "User Created Successfully",
+			user: user,
 		});
 	} catch (e) {
 		console.log(e);
@@ -115,8 +119,9 @@ exports.addUser = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
+	console.log("Update User Called");
 	try {
-		const { uid, role, name, status } = req.body;
+		const { uid, role, name, status, password } = req.body;
 
 		const existingUser = await User.findOne({ uid: uid });
 		if (!existingUser) {
@@ -130,18 +135,18 @@ exports.updateUser = async (req, res) => {
 		if (name) existingUser.name = name;
 		if (status) existingUser.status = status;
 
-		// if (password) {
-		// 	try {
-		// 		const hashedPassword = await bcrypt.hash(password, 10);
-		// 		existingUser.password = hashedPassword;
-		// 	} catch (err) {
-		// 		console.error("Error hashing password:", err);
-		// 		return res.status(500).json({
-		// 			success: "failed",
-		// 			message: "Error in hashing password",
-		// 		});
-		// 	}
-		// }
+		if (password !== "") {
+			try {
+				const hashedPassword = await bcrypt.hash(password, 10);
+				existingUser.password = hashedPassword;
+			} catch (err) {
+				console.error("Error hashing password:", err);
+				return res.status(500).json({
+					success: "failed",
+					message: "Error in hashing password",
+				});
+			}
+		}
 
 		await existingUser.save();
 
@@ -160,6 +165,7 @@ exports.updateUser = async (req, res) => {
 };
 
 exports.logout = async (req, res) => {
+	console.log("Logout Called");
 	try {
 		console.log("Logout called");
 
