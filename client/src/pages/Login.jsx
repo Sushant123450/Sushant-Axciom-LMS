@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
-
+import image from "../assets/Img.jpg";
 const Login = () => {
 	const { loading, setLoading, handleLogin, navigate } = useContext(AppContext);
 	const [formData, setFormData] = useState({
@@ -29,8 +29,15 @@ const Login = () => {
 	};
 
 	return (
-		<div className="min-h-screen flex items-center justify-center">
-			<div className="bg-gray-200 p-8 rounded-lg shadow-lg w-full max-w-md">
+		<div className="min-h-screen flex items-center justify-around">
+			<div className="h-full overflow-hidden">
+				<img
+					src={image}
+					alt="Login Image"
+					className="m-5 rounded-lg opacity-70 "
+				/>
+			</div>
+			<div className="bg-gray-200 p-8 m-5 rounded-lg shadow-lg w-full max-w-md">
 				<h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
 					Login to Axicom LMS
 				</h2>

@@ -146,7 +146,7 @@ const MaintenanceBar = () => {
 
 				{/* Main Content */}
 				<div className="flex-1 flex justify-center h-full p-8">
-					<div className="w-full max-w-2xl bg-gray-800 text-gray-600 rounded-lg shadow-lg p-6">
+					<div className="w-full  bg-gray-800 text-gray-600 rounded-lg shadow-lg p-6">
 						{selectedSection === "addMembership" && <AddMembership />}
 						{selectedSection === "updateMembership" && <UpdateMembership />}
 						{selectedSection === "addItems" && <AddItem />}
