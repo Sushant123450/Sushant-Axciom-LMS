@@ -7,7 +7,7 @@ const MasterListItems = ({ itemType }) => {
 	console.log(`itemType :- ${itemType}`);
 
 	return (
-		<div className="max-w-7xl p-6 bg-gray-800 text-gray-600  shadow-lg rounded-lg">
+		<div className="max-w-7xl p-6 bg-gray-800  shadow-lg rounded-lg">
 			<h1 className="text-3xl font-semibold text-center mb-6">
 				Master List of {itemType}s
 			</h1>

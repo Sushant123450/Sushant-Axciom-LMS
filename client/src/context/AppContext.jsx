@@ -55,6 +55,8 @@ function AppContextProvider({ children }) {
 		setLoading(true);
 		try {
 			const response = await axios.get(`${BASE_URL}/getAllItemByType`);
+			// console.log(response.data);
+
 			if (response.data.success) {
 				const fetchedItems = response.data.data.map((item) => ({
 					itemId: item.bid,
@@ -64,6 +66,7 @@ function AppContextProvider({ children }) {
 					category: item.category,
 					status: item.availability ? "Available" : "Issued",
 					cost: `$${item.cost.toFixed(2)}`,
+					quantity: item.quantity,
 					procurementDate: new Date(item.dateOfProcurement)
 						.toISOString()
 						.split("T")[0],
@@ -298,9 +301,7 @@ function AppContextProvider({ children }) {
 			data.token = cookies.token;
 			const response = await axios.post(`${BASE_URL}/issueItem`, data);
 			if (response.data.success === "success") {
-				alert(
-					`Item issued succesfully: ${response.data.data.issueId}`
-				);
+				alert(`Item issued succesfully: ${response.data.data.issueId}`);
 			}
 		} catch (err) {
 			console.error(err);
@@ -317,9 +318,7 @@ function AppContextProvider({ children }) {
 			data.token = cookies.token;
 			const response = await axios.post(`${BASE_URL}/returnItem`, data);
 			if (response.data.success === "success") {
-				alert(
-					`Item returned succesfully: ${response.data.data.issueId}`
-				);
+				alert(`Item returned succesfully: ${response.data.data.issueId}`);
 			}
 		} catch (err) {
 			console.error(err);
@@ -361,7 +360,8 @@ function AppContextProvider({ children }) {
 		updateMembership,
 		addItem,
 		updateItem,
-		issueItem,returnItem
+		issueItem,
+		returnItem,
 	};
 
 	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

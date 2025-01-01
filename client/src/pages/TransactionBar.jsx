@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import ItemIssueForm from "../components/issueItem";
 import ItemReturnForm from "../components/returnItem";
 import Spinner from "../assets/Spinner";
+import ItemAvailability from "../components/itemAvailability";
 
 const TransactionBar = () => {
-	const [selectedOption, setSelectedOption] = useState("issueBook");
+	const [selectedOption, setSelectedOption] = useState("isAvailable");
 
 	return (
-		<div className="min-h-screen  flex">
+		<div className="min-h-screen flex">
 			{/* Sidebar */}
 			<aside className="w-64 m-5 p-2 bg-gray-800 shadow-inner shadow-slate-100 h-full rounded-md">
 				<div className="p-4 border-b border-gray-700 ">
@@ -23,7 +24,7 @@ const TransactionBar = () => {
 								onClick={() => setSelectedOption("isAvailable")}
 								className="w-full text-left px-4 py-2 text-sky-400 hover:bg-gray-700 flex justify-between items-center"
 							>
-								Book Availablity
+								Item Availablity
 							</button>
 						</li>
 						{/* Issue Book */}
@@ -58,49 +59,43 @@ const TransactionBar = () => {
 			</aside>
 
 			{/* Main Content */}
-			<div className="flex-1 p-8">
-				{/* Conditional Content */}
-				{selectedOption === "isAvailable" && (
-					<div>
-						<h2 className="text-2xl font-bold text-gray-700 mb-4">
-							{/* <Spinner/> */}
-							Book Availability
-						</h2>
-					</div>
-				)}
+			<div className="flex-1 flex justify-center h-full p-8">
+				<div className="w-full  bg-gray-800 text-gray-600 rounded-lg shadow-lg p-6">
+					{selectedOption === "isAvailable" && (
+						<div>
+							<ItemAvailability />
+						</div>
+					)}
 
-				{selectedOption === "issueBook" && (
-					<div>
-						{/* <h2 className="text-2xl font-bold text-gray-700 mb-4"> */}
+					{selectedOption === "issueBook" && (
+						<div>
 							<ItemIssueForm />
-						{/* </h2> */}
-					</div>
-				)}
+						</div>
+					)}
 
-				{selectedOption === "returnBook" && (
-					<div>
-						{/* <h2 className="text-2xl font-bold text-gray-700 mb-4"> */}
+					{selectedOption === "returnBook" && (
+						<div>
 							<ItemReturnForm />
-						{/* </h2> */}
-					</div>
-				)}
+						</div>
+					)}
 
-				{selectedOption === "payFine" && (
-					<div>
-						<h2 className="text-2xl font-bold text-gray-700 mb-4">Pay Fine</h2>
-						<p className="text-gray-600">
-							Check for overdue books and pay the fine amount.
-						</p>
-					</div>
-				)}
+					{selectedOption === "payFine" && (
+						<div>
+							Pay Fine
+							<p className="text-gray-600">
+								Check for overdue books and pay the fine amount.
+							</p>
+						</div>
+					)}
 
-				{!selectedOption && (
-					<div>
-						<h2 className="text-2xl font-bold text-gray-700 mb-4">
-							Select a transaction from the sidebar
-						</h2>
-					</div>
-				)}
+					{!selectedOption && (
+						<div>
+							<h2 className="text-2xl font-bold text-gray-700 mb-4">
+								Select a transaction from the sidebar
+							</h2>
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

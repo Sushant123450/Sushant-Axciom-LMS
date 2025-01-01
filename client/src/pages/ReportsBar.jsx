@@ -77,8 +77,8 @@ const ReportsBar = () => {
 				</aside>
 
 				{/* Main Content */}
-				<div className="flex-1 flex justify-center h-[80%] p-8">
-					<div className="w-full bg-white rounded-lg ">
+				<div className="flex-1 flex justify-center h-full p-8">
+					<div className="w-full  bg-gray-800 text-gray-100 rounded-lg shadow-lg p-6">
 						{selectedReport === "masterListBooks" && (
 							<MasterListItems itemType={"Book"} />
 						)}
