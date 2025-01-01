@@ -91,7 +91,7 @@ exports.issueItem = async (req, res) => {
 	console.log("Issue Item Called");
 	try {
 		const { itemId, issueDate, returnDate, remarks } = req.body;
-		const {uid} = req.user;
+		const { uid } = req.user;
 		console.log(req.body);
 
 		const item = await Item.findOne({ bid: itemId });
@@ -164,8 +164,8 @@ exports.issueItem = async (req, res) => {
 exports.returnItem = async (req, res) => {
 	console.log("Return Issue Called");
 	try {
-		const { itemId} = req.body;
-		const {uid} = req.user;
+		const { itemId } = req.body;
+		const { uid } = req.user;
 
 		// Step 1: Find the corresponding issue entry by itemId and uid
 		const issue = await Issue.findOne({
@@ -241,6 +241,52 @@ exports.returnItem = async (req, res) => {
 		});
 	} catch (e) {
 		console.error("Error returning item:", e);
+		return res.status(500).json({
+			success: false,
+			message: "Server Error",
+		});
+	}
+};
+
+exports.payFine = async (req, res) => {
+	console.log("Pay Fine Called");
+
+	try {
+		const { issueID } = req.body; // Extracting issue ID and token from the request body
+
+		// Step 1: Find the issue by issueID
+		const issue = await Issue.findOne({ issueId: issueID });
+
+		if (!issue) {
+			return res.status(404).json({
+				success: "failed",
+				message: "Issue not found",
+			});
+		}
+
+		// Step 2: Check if the fine is applicable and unpaid
+		if (issue.fineAmount === 0 || issue.finePaid) {
+			return res.status(400).json({
+				success: "failed",
+				message: "No fine to pay or fine already paid",
+			});
+		}
+
+		issue.finePaid = true;
+		await issue.save();
+
+		return res.status(200).json({
+			success: "success",
+			message: "Fine paid successfully",
+			data: {
+				issueId: issue.issueId,
+				fineAmount: issue.fineAmount,
+				status: issue.status,
+				finePaid: issue.finePaid,
+			},
+		});
+	} catch (e) {
+		console.error("Error paying fine:", e);
 		return res.status(500).json({
 			success: false,
 			message: "Server Error",

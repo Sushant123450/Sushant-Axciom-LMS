@@ -4,7 +4,6 @@ import Spinner from "../assets/Spinner";
 
 const MasterListItems = ({ itemType }) => {
 	const { items, loading } = useContext(AppContext);
-	console.log(`itemType :- ${itemType}`);
 
 	return (
 		<div className="max-w-7xl p-6 bg-gray-800  shadow-lg rounded-lg">

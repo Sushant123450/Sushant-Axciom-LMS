@@ -50,7 +50,7 @@ const OverdueIssues = () => {
 								<td className="py-3 px-3 text-left">{item.dateOfIssue}</td>
 								<td className="py-3 px-3 text-left">{item.dateOfReturn}</td>
 
-								<td className="py-3 px-3 text-left">{item.fine}</td>
+								<td className="py-3 px-3 text-left">${item.fine}</td>
 								<td className="py-3 px-3 text-left">
 									{item.finePaid ? "Yes" : "No"}
 								</td>
