@@ -15,7 +15,7 @@ function AppContextProvider({ children }) {
 	const [activeIssues, setActiveIssues] = useState([]);
 	const [overdue, setOverDue] = useState([]);
 	const navigate = useNavigate();
-	const BASE_URL = "http://localhost:5500/api/v1";
+	const BASE_URL = "https://sushant-axciom-lms.onrender.com/api/v1";
 	const [cookies, setCookie, removeCookie] = useCookies();
 
 	async function handleLogin(data) {
