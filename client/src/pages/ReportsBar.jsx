@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MasterListItems from "../components/MasterListItems";
 import IssueRequests from "../components/IssueRequests";
 import MasterListOfMemberships from "../components/MasterListOfMemberships";
-import ActiveIssues from "../components/activeIssues";
+import ActiveIssues from "../components/ActiveIssues";
 import OverdueIssues from "../components/overdue";
 
 const ReportsBar = () => {
