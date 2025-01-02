@@ -1,5 +1,5 @@
+import React, { useContext, useEffect } from "react";
 import Spinner from "../assets/Spinner";
-import { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 
 const ActiveIssues = () => {
