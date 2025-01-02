@@ -41,7 +41,7 @@ function App() {
 	}, [items, getHomeData]);
 
 	return (
-		<div className="bg-slate-950 h-screen w-screen m-0 overflow-hidden">
+		<div className="bg-slate-950 h-screen w-screen m-0 overflow-auto">
 			{!hideTopNavBar && <TopNavBar />}
 			<Routes>
 				<Route path="/" element={<Login />} />

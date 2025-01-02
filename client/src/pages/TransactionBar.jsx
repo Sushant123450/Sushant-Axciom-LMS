@@ -3,6 +3,7 @@ import ItemIssueForm from "../components/issueItem";
 import ItemReturnForm from "../components/returnItem";
 import Spinner from "../assets/Spinner";
 import ItemAvailability from "../components/itemAvailability";
+import PayFine from "../components/payFine.jsx";
 
 const TransactionBar = () => {
 	const [selectedOption, setSelectedOption] = useState("isAvailable");
@@ -81,10 +82,7 @@ const TransactionBar = () => {
 
 					{selectedOption === "payFine" && (
 						<div>
-							Pay Fine
-							<p className="text-gray-600">
-								Check for overdue books and pay the fine amount.
-							</p>
+							<PayFine />
 						</div>
 					)}
 

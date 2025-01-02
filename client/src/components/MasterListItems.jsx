@@ -28,6 +28,7 @@ const MasterListItems = ({ itemType }) => {
 								<th className="py-3 px-3 text-left">Category</th>
 								<th className="py-3 px-3 text-left">Status</th>
 								<th className="py-3 px-3 text-left">Cost</th>
+								<th className="py-3 px-3 text-left">Quantity</th>
 								<th className="py-3 px-3 text-left">Procurement Date</th>
 							</tr>
 						</thead>
@@ -49,6 +50,7 @@ const MasterListItems = ({ itemType }) => {
 										<td className="py-3 px-3 text-left">{item.category}</td>
 										<td className="py-3 px-3 text-left">{item.status}</td>
 										<td className="py-3 px-3 text-left">{item.cost}</td>
+										<td className="py-3 px-3 text-left">{item.quantity}</td>
 										<td className="py-3 px-3 text-left">
 											{item.procurementDate}
 										</td>

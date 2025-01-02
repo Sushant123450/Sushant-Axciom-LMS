@@ -252,10 +252,11 @@ exports.payFine = async (req, res) => {
 	console.log("Pay Fine Called");
 
 	try {
-		const { issueID } = req.body; // Extracting issue ID and token from the request body
+		const { issueId } = req.body; // Extracting issue ID and token from the request body
+		console.log(req.body);
 
 		// Step 1: Find the issue by issueID
-		const issue = await Issue.findOne({ issueId: issueID });
+		const issue = await Issue.findOne({ issueId: issueId });
 
 		if (!issue) {
 			return res.status(404).json({

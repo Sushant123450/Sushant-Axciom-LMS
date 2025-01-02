@@ -327,6 +327,30 @@ function AppContextProvider({ children }) {
 			setLoading(false);
 		}
 	};
+
+	const payFine = async (data) => {
+		// console.log(data);
+		setLoading(true);
+		try {
+			data.token = cookies.token;
+			// console.log(data);
+
+			const response = await axios.patch(`${BASE_URL}/payfine`, data);
+			// console.log(response);
+
+			if (response.data.success === "success") {
+				alert(
+					`Fine Paid succesfully:${response.data.data.issueId} - ${response.data.data.fineAmount}`
+				);
+			}
+		} catch (err) {
+			console.error(err);
+			alert(err);
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	const value = {
 		loading,
 		BASE_URL,
@@ -362,6 +386,7 @@ function AppContextProvider({ children }) {
 		updateItem,
 		issueItem,
 		returnItem,
+		payFine,
 	};
 
 	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

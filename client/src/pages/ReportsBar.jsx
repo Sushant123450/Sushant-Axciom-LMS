@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import MasterListItems from "../components/MasterListItems";
 import IssueRequests from "../components/IssueRequests";
 import MasterListOfMemberships from "../components/MasterListOfMemberships";
-import ActiveIssues from "../components/ActiveIssues";
+import ActiveIssues from "../components/activeIssues";
 import OverdueIssues from "../components/overdue";
 
 const ReportsBar = () => {
 	const [selectedReport, setSelectedReport] = useState("masterListBooks");
 
 	const handleSelection = (report) => {
-		setSelectedReport(report); // Set the selected report to display content
+		setSelectedReport(report);
 	};
 
 	return (

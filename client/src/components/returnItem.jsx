@@ -67,6 +67,7 @@ const ItemReturnForm = () => {
 						name="itemId"
 						value={formData.itemId}
 						onChange={handleChange}
+						placeholder="Enter Item ID"
 						required
 						className="mt-1 w-full p-2 text-base border rounded-md focus:ring-2 focus:ring-blue-500"
 					/>
@@ -74,13 +75,14 @@ const ItemReturnForm = () => {
 
 				<div>
 					<label className="block text-base font-medium text-gray-700">
-						User Name
+						Name
 					</label>
 					<input
 						type="text"
 						name="author"
 						value={formData.author}
 						onChange={handleChange}
+						placeholder="Enter Name"
 						required
 						className="mt-1 w-full p-2 text-base border rounded-md focus:ring-2 focus:ring-blue-500"
 					/>
@@ -116,7 +118,7 @@ const ItemReturnForm = () => {
 
 				<div>
 					<label className="block text-base font-medium text-gray-700">
-						Remarks 
+						Remarks
 					</label>
 					<textarea
 						name="remarks"
